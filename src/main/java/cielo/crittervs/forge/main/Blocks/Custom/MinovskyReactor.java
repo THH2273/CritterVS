@@ -39,7 +39,9 @@ public class MinovskyReactor extends Block implements EntityBlock {
         super(BlockBehaviour.Properties.of()
                 .strength(3.5F)
                 .requiresCorrectToolForDrops()
-                .sound(SoundType.METAL));
+                .sound(SoundType.METAL)
+                .noOcclusion()
+                );
     }
 
     @Nullable

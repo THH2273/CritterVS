@@ -16,7 +16,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> BEAMLAUNCHERBLOCK = BLOCKS.register("beam_launcher_block",
             () -> new BeamLauncherBlock(BlockBehaviour.Properties.of()
                     .strength(3.0f)
-                    .requiresCorrectToolForDrops()));
+                    .requiresCorrectToolForDrops()
+                    .noOcclusion()));
 
     public static final RegistryObject<Block> MINOVSKYREACTOR = BLOCKS.register("minovsky_reactor",
             () -> new MinovskyReactor());

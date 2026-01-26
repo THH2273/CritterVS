@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=north": { "model": "crittervs:block/beam_launcher_block" },
+    "facing=east": { "model": "crittervs:block/beam_launcher_block", "y": 90 },
+    "facing=south": { "model": "crittervs:block/beam_launcher_block", "y": 180 },
+    "facing=west": { "model": "crittervs:block/beam_launcher_block", "y": 270 },
+    "facing=up": { "model": "crittervs:block/beam_launcher_block", "x": -90 },
+    "facing=down": { "model": "crittervs:block/beam_launcher_block", "x": 90 }
+  }
+}
