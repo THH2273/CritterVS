@@ -1,0 +1,35 @@
+package cielo.crittervs.forge.main.Items;
+
+import cielo.crittervs.forge.main.CritterVs;
+import cielo.crittervs.forge.main.Items.ModItems;
+
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
+
+public class ModCreativeTabs {
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, CritterVs.MOD_ID);
+
+    public static final RegistryObject<CreativeModeTab> ZPS_TAB = CREATIVE_MODE_TABS.register("zps_tab",
+            () -> CreativeModeTab.builder()
+                    .title(Component.literal("Critter VS"))
+                    .icon(() -> new ItemStack(ModItems.MINOVSKY_REACTOR_ITEM.get()))
+                    .displayItems((parameters, output) -> {
+                        // Add all our items to the tab
+                        ModItems.ITEMS.getEntries().forEach(itemRegistryObject -> {
+                            if (!ResourceLocation.parse("zpl:droid_core").equals(itemRegistryObject.getId())) {
+                                output.accept(itemRegistryObject.get());
+                            }
+                        });
+                    }).build());
+
+    public static void register(IEventBus eventBus) {
+        CREATIVE_MODE_TABS.register(eventBus);
+    }
+}
