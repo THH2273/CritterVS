@@ -16,7 +16,7 @@ import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 public class BeamEntityRenderer extends EntityRenderer<BeamEntity> {
-private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(CritterVs.MOD_ID, "textures/particle/beam_particle.png");
+private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(CritterVs.MOD_ID, "textures/particles/beam_particle.png");
 private static final RenderType RENDER_TYPE = RenderType.entityTranslucentEmissive(TEXTURE);
 
 public BeamEntityRenderer(EntityRendererProvider.Context context) {
