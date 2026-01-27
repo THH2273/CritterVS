@@ -125,7 +125,7 @@ public class BeamLauncherBE extends BlockEntity {
             }
         }
         if (blockEntity.tickCounter != 0 || isPowered) {
-            int TICKS_PER_SHOT = 5;
+            int TICKS_PER_SHOT = 2;
             blockEntity.tickCounter = (blockEntity.tickCounter + 1) % TICKS_PER_SHOT;
         }
     }

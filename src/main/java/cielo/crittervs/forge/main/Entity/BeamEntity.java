@@ -82,12 +82,9 @@ public class BeamEntity extends FastProjectileEntity{
         if (this.level().isClientSide) {
             double scale = CritterVs.getDimensionScale(this.level());
 
+
             // Pass scale through velocity parameters (will be used for sizing)
-            this.level().addParticle(
-                    ModParticles.BEAMPARTICLE.get(),
-                    this.xOld, this.yOld, this.zOld,
-                    scale, 0, 0  // Pass scale in xSpeed parameter
-            );
+
         }
 
         // Remove after 8 seconds (160 ticks)
@@ -99,7 +96,7 @@ public class BeamEntity extends FastProjectileEntity{
     @Override
     protected void onHitBlock(BlockHitResult result) {
         super.onHitBlock(result);
-        this.explode(result.getLocation());
+       this.level().destroyBlock(result.getBlockPos(),false);
     }
 
     @Override
@@ -107,9 +104,9 @@ public class BeamEntity extends FastProjectileEntity{
         super.onHitEntity(result);
 
         // Deal damage to the entity
-        result.getEntity().hurt(this.damageSources().thrown(this, this.getOwner()), 5.0F);
+        result.getEntity().hurt(this.damageSources().thrown(this, this.getOwner()), 20.0F);
 
-        this.explode(result.getLocation());
+
     }
 
     private void explode(Vec3 position) {
@@ -150,5 +147,9 @@ public class BeamEntity extends FastProjectileEntity{
         if (shipId != null) {
             tag.putLong("ExcludedShipId", shipId);
         }
+    }
+
+    public boolean isGrounded() {
+        return onGround();
     }
 }

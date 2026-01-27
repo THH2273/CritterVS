@@ -1,5 +1,6 @@
 package cielo.crittervs.forge.main.client.Particles;
 
+import cielo.crittervs.forge.main.CritterVs;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
@@ -11,8 +12,11 @@ import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.ArrayList;
 
 public class BeamParticle extends TextureSheetParticle {
     private final float baseSize;

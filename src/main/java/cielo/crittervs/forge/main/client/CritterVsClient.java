@@ -9,6 +9,7 @@ import cielo.crittervs.forge.main.Entity.ModEntities;
 import cielo.crittervs.forge.main.Entity.Renderer.BeamEntityRenderer;
 import cielo.crittervs.forge.main.client.Particles.BeamParticle;
 import cielo.crittervs.forge.main.client.Particles.ModParticles;
+import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
@@ -23,7 +24,7 @@ public class CritterVsClient {
 
 
     @SubscribeEvent
-    public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+    public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntities.BEAMENTITY.get(), BeamEntityRenderer::new);
     }
 
