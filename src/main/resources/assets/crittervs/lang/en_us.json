@@ -1,0 +1,9 @@
+{
+
+  "block.crittervs.beam_launcher_block": "Beam Launcher",
+  "block.crittervs.minovsky_reactor": "Reactor",
+
+  "item.crittervs.minovsky_reactor": "Reactor",
+  "item.crittervs.beam_launcher_block": "Beam Launcher",
+  "item.crittervs.reactor_fuel": "Reactor Fuel"
+}

@@ -15,10 +15,13 @@ public class ModItems {
             DeferredRegister.create(Registries.ITEM, CritterVs.MOD_ID);
 
 
-    public static final RegistryObject<BlockItem> ENERGY_ORB_LAUNCHER_ITEM = ITEMS.register("photon_pulse_blaster",
+    public static final RegistryObject<BlockItem> ENERGY_ORB_LAUNCHER_ITEM = ITEMS.register("beam_launcher_block",
             () -> new FERedstoneBlockItem(ModBlocks.BEAMLAUNCHERBLOCK.get(), new Item.Properties()));
 
     public static final RegistryObject<BlockItem> MINOVSKY_REACTOR_ITEM = ITEMS.register("minovsky_reactor",
             () -> new BlockItem(ModBlocks.MINOVSKYREACTOR.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item> REACTOR_FUEL = ITEMS.register("reactor_fuel",
+            () -> new FuelItem(new Item.Properties(), 800));
 
 }

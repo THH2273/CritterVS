@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 public class BeamLauncherBE extends BlockEntity {
     private static final int MAX_ENERGY = 1_000;
     private static final int MAX_TRANSFER = 500;
-    private static final int ENERGY_PER_SHOT = 64;
+    private static final int ENERGY_PER_SHOT = 1000;
 
     private int tickCounter = 0;
 
@@ -125,7 +125,7 @@ public class BeamLauncherBE extends BlockEntity {
             }
         }
         if (blockEntity.tickCounter != 0 || isPowered) {
-            int TICKS_PER_SHOT = 2;
+            int TICKS_PER_SHOT = 20;
             blockEntity.tickCounter = (blockEntity.tickCounter + 1) % TICKS_PER_SHOT;
         }
     }

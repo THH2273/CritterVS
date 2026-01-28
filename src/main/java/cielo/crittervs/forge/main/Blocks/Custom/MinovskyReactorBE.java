@@ -6,6 +6,7 @@ import cielo.crittervs.forge.main.Blocks.util.TickableBlockEntity;
 import cielo.crittervs.forge.main.CritterVs;
 
 
+import cielo.crittervs.forge.main.Items.ModItems;
 import cielo.crittervs.forge.main.tools.AdaptedEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -98,11 +99,14 @@ public class MinovskyReactorBE extends BlockEntity {
                     // No fuel
                     return;
                 }
-                setBurnTime(ForgeHooks.getBurnTime(fuel, RecipeType.SMELTING));
+                if (fuel.getItem() == ModItems.REACTOR_FUEL.get()) {
+                    setBurnTime(ForgeHooks.getBurnTime(fuel, RecipeType.SMELTING));
+                }
                 if (burnTime <= 0) {
                     // Not a fuel
                     return;
                 }
+
                 items.extractItem(SLOT, 1, false);
             } else {
                 setBurnTime(burnTime-1);

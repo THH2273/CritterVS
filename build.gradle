@@ -156,11 +156,11 @@ processResources {
 
 loom {
     forge {
-        mixinConfig "vs_template.mixins.json"
+        mixinConfig "crittervs.mixins.json"
         convertAccessWideners.set(true)
     }
     mixin {
-        defaultRefmapName = "vs_template-refmap.json"
+        defaultRefmapName = "crittervs-refmap.json"
     }
 }
 
@@ -171,16 +171,20 @@ tasks.withType(JavaCompile).configureEach {
 
 shadowJar {
     archiveClassifier.set "dev-shadow"
+    zip64 = true
 }
 
 remapJar {
     input.set shadowJar.archiveFile
     dependsOn shadowJar
     archiveClassifier.set null
+    zip64 = true
+
 }
 
 jar {
     archiveClassifier.set "dev"
+    zip64 = true
 }
 
 components.java {

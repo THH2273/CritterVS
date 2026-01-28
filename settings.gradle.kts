@@ -23,4 +23,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "vs-template-mod"
+rootProject.name = "crittervs"

@@ -6,18 +6,24 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.level.ExplosionEvent;
 import org.valkyrienskies.core.api.ships.Ship;
 import org.valkyrienskies.mod.common.VSGameUtilsKt;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class BeamEntity extends FastProjectileEntity{
     private static final EntityDataAccessor<Long> EXCLUDED_SHIP_ID =
@@ -96,9 +102,8 @@ public class BeamEntity extends FastProjectileEntity{
     @Override
     protected void onHitBlock(BlockHitResult result) {
         super.onHitBlock(result);
-       this.level().destroyBlock(result.getBlockPos(),false);
+        explode(result.getLocation());
     }
-
     @Override
     protected void onHitEntity(EntityHitResult result) {
         super.onHitEntity(result);

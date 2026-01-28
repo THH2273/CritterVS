@@ -36,7 +36,7 @@ public class MinovskyReactor extends Block implements EntityBlock {
     public static final String SCREEN_TUTORIAL_GENERATOR = "tutorial.screen.generator";
 
     public MinovskyReactor() {
-        super(BlockBehaviour.Properties.of()
+        super(Properties.of()
                 .strength(3.5F)
                 .requiresCorrectToolForDrops()
                 .sound(SoundType.METAL)
