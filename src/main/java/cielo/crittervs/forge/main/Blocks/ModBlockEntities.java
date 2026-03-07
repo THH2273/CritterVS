@@ -1,15 +1,31 @@
 package cielo.crittervs.forge.main.Blocks;
 
 import cielo.crittervs.forge.main.Blocks.Custom.BeamLauncher.BeamLauncherBE;
+
 import cielo.crittervs.forge.main.Blocks.Custom.MinovskyReactorBE;
 import cielo.crittervs.forge.main.CritterVs;
+import com.tterrag.registrate.builders.BlockBuilder;
+import com.tterrag.registrate.util.entry.BlockEntityEntry;
+import com.tterrag.registrate.util.entry.BlockEntry;
+import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import static cielo.crittervs.forge.main.CritterVs.REGISTRATE;
+import static com.simibubi.create.api.behaviour.display.DisplaySource.displaySource;
+import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
+
 public class ModBlockEntities {
+
+
+
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, CritterVs.MOD_ID);
 
@@ -20,7 +36,10 @@ public class ModBlockEntities {
     public static final RegistryObject<BlockEntityType<MinovskyReactorBE>> MINOVSKYREACTORBE =
             BLOCK_ENTITIES.register("minovsky_reactor_block_entity",
                     ()-> BlockEntityType.Builder.of(MinovskyReactorBE::new,ModBlocks.MINOVSKYREACTOR.get())
-                    .build(null));
+                            .build(null));
+
+
+
 
 
 

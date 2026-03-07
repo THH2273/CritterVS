@@ -1,7 +1,7 @@
 package cielo.crittervs.forge.main.Entity.Renderer;
 
 import cielo.crittervs.forge.main.CritterVs;
-import cielo.crittervs.forge.main.Entity.BeamEntity;
+import cielo.crittervs.forge.main.Entity.MedBeam.MedBeamProjectile;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -12,10 +12,11 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
-public class BeamEntityRenderer extends EntityRenderer<BeamEntity> {
+public class BeamEntityRenderer extends EntityRenderer<MedBeamProjectile> {
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(CritterVs.MOD_ID, "textures/particle/beam_particle.png");
     private static final RenderType RENDER_TYPE = RenderType.entityTranslucentEmissive(TEXTURE);
 
@@ -24,7 +25,7 @@ public class BeamEntityRenderer extends EntityRenderer<BeamEntity> {
     }
 
     @Override
-    public void render(BeamEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
+    public void render(MedBeamProjectile entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
         poseStack.pushPose();
 
         // Make it face the camera (billboard effect)
@@ -87,7 +88,7 @@ public class BeamEntityRenderer extends EntityRenderer<BeamEntity> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(BeamEntity arg) {
+    public @NotNull ResourceLocation getTextureLocation(MedBeamProjectile arg) {
         return TEXTURE;
     }
 

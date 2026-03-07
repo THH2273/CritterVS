@@ -1,5 +1,4 @@
-package dev.turtywurty.tutorialmod.menu.slot;
-
+package cielo.crittervs.forge.main.menu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.common.ForgeHooks;

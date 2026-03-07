@@ -3,7 +3,7 @@ package cielo.crittervs.forge.main.Entity.Model;// Made with Blockbench 5.0.7
 // Paste this class into your mod and generate all required imports
 
 
-import cielo.crittervs.forge.main.Entity.BeamEntity;
+import cielo.crittervs.forge.main.Entity.MedBeam.MedBeamProjectile;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
@@ -13,9 +13,7 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 
-import javax.swing.text.html.parser.Entity;
-
-public class BeamEntityModel<T extends BeamEntity> extends EntityModel<T> {
+public class BeamEntityModel<T extends MedBeamProjectile> extends EntityModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation( ResourceLocation.fromNamespaceAndPath("modid", "beam"), "main");
 	private final ModelPart main;

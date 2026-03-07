@@ -4,14 +4,12 @@ package cielo.crittervs.forge.main;
 import cielo.crittervs.forge.main.Blocks.ModBlockEntities;
 import cielo.crittervs.forge.main.Blocks.ModBlocks;
 import cielo.crittervs.forge.main.Entity.ModEntities;
-import cielo.crittervs.forge.main.Entity.Renderer.BeamEntityRenderer;
 import cielo.crittervs.forge.main.Items.ModCreativeTabs;
 import cielo.crittervs.forge.main.Items.ModItems;
 import cielo.crittervs.forge.main.client.Particles.BeamParticle;
 import cielo.crittervs.forge.main.client.Particles.ModParticles;
 import cielo.crittervs.forge.main.menu.MenuInit;
-import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRenderers;
+import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
@@ -19,7 +17,6 @@ import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +27,7 @@ import static cielo.crittervs.forge.main.CritterVs.MOD_ID;
 public class CritterVs {
 public static final String MOD_ID = "crittervs";
 public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MOD_ID);
 
 public CritterVs(FMLJavaModLoadingContext ctx) {
     IEventBus eventBus = ctx.getModEventBus();
@@ -61,18 +59,6 @@ public static class ClientModEvents  {
 
 
 
-    }
-    public static double getDimensionScale(Level level) {
-        ResourceLocation dimension = level.dimension().location();
-        if (
-                dimension.equals(ResourceLocation.fromNamespaceAndPath("genesis", "great_unknown")) ||
-                        dimension.equals(ResourceLocation.fromNamespaceAndPath("genesis", "nowhere")) ||
-                        dimension.equals(ResourceLocation.fromNamespaceAndPath("genesis", "great_unknown"))
-        ) {
-            return 1.0 / 16.0;
-        } else {
-            return 1.0;
-        }
     }
 
 

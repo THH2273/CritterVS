@@ -3,6 +3,7 @@ package cielo.crittervs.forge.main.Items;
 import cielo.crittervs.forge.main.Blocks.Custom.MinovskyReactor;
 import cielo.crittervs.forge.main.Blocks.ModBlocks;
 import cielo.crittervs.forge.main.CritterVs;
+import com.drmangotea.tfmg.datagen.recipes.TFMGRecipeProvider;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -23,5 +24,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> REACTOR_FUEL = ITEMS.register("reactor_fuel",
             () -> new FuelItem(new Item.Properties(), 800));
+    public static final RegistryObject<Item> MEDIUM_BEAM_REFLECTOR = ITEMS.register("medium_beam_reflector",
+            () -> new Item(new Item.Properties()));
 
 }

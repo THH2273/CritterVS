@@ -1,11 +1,18 @@
 package cielo.crittervs.forge.main.Blocks.Custom.BeamLauncher;
 
 import cielo.crittervs.forge.main.Blocks.ModBlockEntities;
-import cielo.crittervs.forge.main.CritterVs;
-import cielo.crittervs.forge.main.Entity.BeamEntity;
+import cielo.crittervs.forge.main.Entity.MedBeam.MedBeamProjectile;
+import cielo.crittervs.forge.main.Entity.MedBeam.MedBeamReflectorItem;
+import cielo.crittervs.forge.main.Entity.ModEntities;
+import cielo.crittervs.forge.main.Items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -15,12 +22,8 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.EnergyStorage;
 import org.jetbrains.annotations.NotNull;
-import org.joml.Matrix4dc;
-import org.joml.Vector3d;
-import org.joml.Vector3dc;
-import org.valkyrienskies.core.api.ships.Ship;
-import org.valkyrienskies.mod.common.VSGameUtilsKt;
-import org.valkyrienskies.mod.common.util.VectorConversionsMCKt;
+import rbasamoyai.createbigcannons.munitions.autocannon.AbstractAutocannonProjectile;
+import rbasamoyai.createbigcannons.munitions.autocannon.AutocannonRoundItem;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -120,7 +123,7 @@ public class BeamLauncherBE extends BlockEntity {
                 if (blockEntity.energyStorage.getEnergyStored() >= ENERGY_PER_SHOT) {
                     // Extract the energy and fire
                     blockEntity.energyStorage.extractEnergy(ENERGY_PER_SHOT, false);
-                    blockEntity.fireEnergyOrb(level, pos, state);
+                    blockEntity.fireBeam(level, pos, state);
                 }
             }
         }
@@ -130,48 +133,40 @@ public class BeamLauncherBE extends BlockEntity {
         }
     }
 
-    private void fireEnergyOrb(Level level, BlockPos pos, BlockState state) {
+    private void fireBeam(Level level, BlockPos pos, BlockState state) {
+
+ItemStack foundProjectile = new ItemStack(ModItems.MEDIUM_BEAM_REFLECTOR.get());
+
+if (!(foundProjectile.getItem() instanceof AutocannonRoundItem roundItem)) {
+    return;
+}
+
+
+        AbstractAutocannonProjectile projectile = roundItem.getAutocannonProjectile(foundProjectile,level);
+
+
         Vec3 direction = BeamLauncherBlock.getAimVector(state);
-
-        double scale = CritterVs.getDimensionScale(level);
-
         Vec3 blockCenter = Vec3.atCenterOf(pos);
         Vec3 spawnPos = blockCenter.add(direction.scale(0.6));
+        float speed = 2f;
+        float spread = 1f;
 
-        Vec3 velocity = direction.scale(7.0);
-
-        BeamEntity Beam;
-
-        Ship ship = VSGameUtilsKt.getShipManagingPos(level, pos);
-        if (ship != null) {
-            Matrix4dc transform = ship.getTransform().getShipToWorld();
-            Vector3d newVelocity = transform.transformDirection(VectorConversionsMCKt.toJOML(velocity));
-            Vector3d newPosition = transform.transformPosition(VectorConversionsMCKt.toJOML(blockCenter));
-            newPosition = newPosition.add(newVelocity.normalize(0.6 * scale, new Vector3d()));
-
-            Vector3dc shipVelocity = ship.getVelocity();
-            Vector3d velocityDirection = newVelocity.normalize(new Vector3d());
-            double parallelComponent = shipVelocity.dot(velocityDirection);
-            Vector3d parallelVelocity = velocityDirection.mul(parallelComponent, new Vector3d());
+            projectile.setPos(this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ());
+            projectile.setChargePower(4F);
+            projectile.setTracer(true);
+            projectile.setLifetime(80);
+            projectile.shoot(spawnPos.x, spawnPos.y, spawnPos.z, speed, spread);
+            projectile.xRotO = projectile.getXRot();
+            projectile.yRotO = projectile.getYRot();
 
 
 
-            Vector3d finalVelocity;
-            if (scale < 0.5) {
-                finalVelocity = newVelocity.add(parallelVelocity.mul(scale), new Vector3d());
-            } else {
-                finalVelocity = newVelocity;
-            }
+            level.addFreshEntity(projectile);
 
-            Beam = new BeamEntity(level, newPosition.x, newPosition.y, newPosition.z, VectorConversionsMCKt.toMinecraft(finalVelocity));
-
-            Beam.setExcludedShipId(ship.getId());
-        } else {
-            Beam = new BeamEntity(level, spawnPos.x, spawnPos.y, spawnPos.z, velocity.scale(scale));
         }
-
-        level.addFreshEntity(Beam);
 
 
     }
-}
+
+
+
