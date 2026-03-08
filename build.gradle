@@ -21,8 +21,7 @@ minecraft {
     copyIdeResources = true
 
     mixin {
-        add sourceSets.main, "${mod_id}.refmap.json"
-        config "${mod_id}.mixins.json"
+        add sourceSets.main, "crittervs.refmap.json"
     }
 
     runs {
